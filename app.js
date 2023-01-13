@@ -22,6 +22,7 @@
 //   console.log('hello world im a hot socket');
 // });
 
+// import * as io from 'socket.io-client';
 
 const express = require('express');
 const app = express();
@@ -33,6 +34,10 @@ const io = new Server(server);
 // app.get('/', (req, res) => {
 //   res.sendFile(__dirname);
 // });
+const socket = require("socket.io-client")("https://openboard-five.vercel.app/", {
+  rejectUnauthorized: false // WARN: please do not do this in production
+});
+
 
 app.use(express.static(__dirname));
 // io.on('connection', (socket) => {
