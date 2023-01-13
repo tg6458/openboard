@@ -1,26 +1,47 @@
-const express = require("express");
-const socket = require("socket.io");
-var  http = require('http');
+// const express = require("express");
+// const socket = require("socket.io");
+// var  http = require('http');
 
-const app = express(); //initilize the server
+// const app = express(); //initilize the server
 
-app.use(express.static(__dirname));
+// app.use(express.static(__dirname));
 
-let port = process.env.PORT || 5000;
-// let server = app.listen(port, () => {
-//   console.log("Listening port " + port);
+// let port = process.env.PORT || 5000;
+// // let server = app.listen(port, () => {
+// //   console.log("Listening port " + port);
+// // });
+
+// // let io = socket(server);
+
+// var server = http.createServer(app).listen(port, function(){
+//   console.log("Express server listening on port " + port);
 // });
 
-// let io = socket(server);
-
-var server = http.createServer(app).listen(port, function(){
-  console.log("Express server listening on port " + port);
-});
-
-var io = socket(server);
+// var io = socket(server);
 // io.sockets.on('connection', function () {
 //   console.log('hello world im a hot socket');
 // });
+
+
+const express = require('express');
+const app = express();
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server);
+
+// app.get('/', (req, res) => {
+//   res.sendFile(__dirname);
+// });
+
+app.use(express.static(__dirname));
+// io.on('connection', (socket) => {
+//   console.log('a user connected');
+// });
+let port = process.env.PORT || 5000;
+server.listen(port, () => {
+  console.log("Listening port " + port);
+});
 
 io.on("connection", (socket) => {
   console.log("Made a connection");
