@@ -37,9 +37,10 @@ const io = new Server(server);
 const socket = require("socket.io-client")("https://openboard-five.vercel.app/", {
   rejectUnauthorized: false // WARN: please do not do this in production
 });
+app.use(express.static(__dirname + "/public"))
 
 
-app.use(express.static(__dirname));
+// app.use(express.static(__dirname));
 // io.on('connection', (socket) => {
 //   console.log('a user connected');
 // });
